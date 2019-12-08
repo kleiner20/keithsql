@@ -1,12 +1,15 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
+const textToImage = require('text-to-image');
 var Choices = require('prompt-choices');
    const Engineer = require('./lib/Engineer');
    const Intern = require('./lib/Intern');
    const Manager = require('./lib/Manager');
 
-
+  //  textToImage.generate('Employee Manager').then(function (dataUri) {
+  //   console.log(dataUri);
+  // });
 
 
 const writeFileAsync = util.promisify(fs.writeFile);
