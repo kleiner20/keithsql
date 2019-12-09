@@ -1,16 +1,19 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-// const textToImage = require('text-to-image');
+var mysql = require("mysql");
 var Choices = require('prompt-choices');
    const Engineer = require('./lib/Engineer');
    const Intern = require('./lib/Intern');
    const Manager = require('./lib/Manager');
 
-  //  textToImage.generate('Employee Manager').then(function (dataUri) {
-  //   console.log(dataUri);
-  // });
-
+   var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'Mysqul20!',
+    database : 'employeedirectory'
+  });
+  connection.connect();
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -26,13 +29,35 @@ function rolePrompts(selectedRole){
     ])
   }
   else if(selectedRole === "View All Employees"){
-    return inquirer.prompt([
-      {
-        type: "input",
-        name: "gitHub",
-        message: "What is your GitHub?"
-      }
-    ])
+    connection.query("SELECT * FROM employeedirectory.employees;", function(err, rows, fields) {
+      if (err) throw err;
+      console.log(rows[0]);
+      // var html = "<h1>Actors Ordered BY ID</h1>";
+  
+      // html += "<ul>";
+  
+      // for (var i = 0; i < result.length; i++) {
+      //   html += "<li><p> ID: " + result[i].id + "</p>";
+      //   html += "<p> Name: " + result[i].name + "</p>";
+      //   html += "<p> Coolness Points: " + result[i].coolness_points + "</p>";
+      //   html += "<p>Attitude: " + result[i].attitude + "</p></li>";
+      // }
+  
+      // html += "</ul>";
+  
+      // res.send(html);
+    });
+  
+
+
+
+    // return inquirer.prompt([
+    //   {
+    //     type: "input",
+    //     name: "gitHub",
+    //     message: "What is your GitHub?"
+    //   }
+    // ])
   }
   else if(selectedRole === "Engineer"){
       return inquirer.prompt([
@@ -69,25 +94,15 @@ function promptUser() {
     {
       type: "input",
       name: "name",
-      message: "What is your name?"
-    },
-    {
-      type: "input",
-      name: "id",
-      message: "What is your ID?"
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "What is your email?"
-    },
-    {
-      type: 'checkbox',
-      name: "title",
-      message: "What is your employee role?",
-      choices: [
-       'Manager','Engineer', 'Intern', 'Stop']
+      message: "Trying again eh?"
     }
+    // {
+    //   type: 'checkbox',
+    //   name: "title",
+    //   message: "What is your employee role?",
+    //   choices: [
+    //    'Manager','Engineer', 'Intern', 'Stop']
+    // }
   ])
 };
 
@@ -145,7 +160,7 @@ async function init() {
           {
             type: "confirm",
             name: "choice",
-            message: "Add another employee?"
+            message: "Continue?"
           }
         ])
         .then(val => {
@@ -153,7 +168,8 @@ async function init() {
           if (val.choice) {
             init();
           } else {
-            this.quit();
+            // this.quit();
+            process.exit(1);
           }
         })
       };
@@ -169,7 +185,7 @@ async function init() {
       enterNew()
     }
     
-    console.log("Successfully wrote to index.html");
+    // console.log("Successfully wrote to index.html");
 
 
   } catch (err) {
