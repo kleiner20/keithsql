@@ -32,32 +32,10 @@ function rolePrompts(selectedRole){
     connection.query("SELECT * FROM employeedirectory.employees;", function(err, rows, fields) {
       if (err) throw err;
       console.log(rows[0]);
-      // var html = "<h1>Actors Ordered BY ID</h1>";
-  
-      // html += "<ul>";
-  
-      // for (var i = 0; i < result.length; i++) {
-      //   html += "<li><p> ID: " + result[i].id + "</p>";
-      //   html += "<p> Name: " + result[i].name + "</p>";
-      //   html += "<p> Coolness Points: " + result[i].coolness_points + "</p>";
-      //   html += "<p>Attitude: " + result[i].attitude + "</p></li>";
-      // }
-  
-      // html += "</ul>";
-  
-      // res.send(html);
+
+
     });
-  
 
-
-
-    // return inquirer.prompt([
-    //   {
-    //     type: "input",
-    //     name: "gitHub",
-    //     message: "What is your GitHub?"
-    //   }
-    // ])
   }
   else if(selectedRole === "Engineer"){
       return inquirer.prompt([
@@ -108,7 +86,7 @@ function promptUser() {
 
 
 function generateMgr(employees) {
-  console.log(employees.office)
+  console.log("Here with the literal")
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -144,16 +122,17 @@ async function init() {
   console.log("--------------------");
   console.log("|  Employee Manager |");
   console.log("--------------------");
+  //Start comment out
   let myEmployees = []
   try {
     const employees = await promptUser();
-    console.log(employees)
+    console.log("I'm here")
     const roleInfo = await rolePrompts(employees.title[0]);
-
+//start comment out
     const html = generateMgr(employees);
 
     await writeFileAsync("index.html", html);
-    //Enter new code here
+    //End comment out
     function enterNew() {
       inquirer
         .prompt([
@@ -164,7 +143,7 @@ async function init() {
           }
         ])
         .then(val => {
-          // If the user says yes to another game, play again, otherwise quit the game
+          // If the user says yes to end, sort again, otherwise quit the directory
           if (val.choice) {
             init();
           } else {
