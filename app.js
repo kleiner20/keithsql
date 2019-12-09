@@ -25,6 +25,15 @@ function rolePrompts(selectedRole){
       }
     ])
   }
+  else if(selectedRole === "View All Employees"){
+    return inquirer.prompt([
+      {
+        type: "input",
+        name: "gitHub",
+        message: "What is your GitHub?"
+      }
+    ])
+  }
   else if(selectedRole === "Engineer"){
       return inquirer.prompt([
         {
@@ -55,7 +64,7 @@ function promptUser() {
       name: "title",
       message: "What would you like to do?",
       choices: [
-       'Manager','Engineer', 'Intern', 'Stop']
+       'View All Employees','View All Employees By Department', 'View All Employees By Manager', 'Add Employee']
     },
     {
       type: "input",
