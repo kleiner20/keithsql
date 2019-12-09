@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-const textToImage = require('text-to-image');
+// const textToImage = require('text-to-image');
 var Choices = require('prompt-choices');
    const Engineer = require('./lib/Engineer');
    const Intern = require('./lib/Intern');
@@ -50,6 +50,13 @@ function rolePrompts(selectedRole){
 
 function promptUser() {
   return inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: "title",
+      message: "What would you like to do?",
+      choices: [
+       'Manager','Engineer', 'Intern', 'Stop']
+    },
     {
       type: "input",
       name: "name",
@@ -110,7 +117,9 @@ function quit() {
 }
 
 async function init() {
-  console.log("Please enter your employee information");
+  console.log("--------------------");
+  console.log("|  Employee Manager |");
+  console.log("--------------------");
   let myEmployees = []
   try {
     const employees = await promptUser();

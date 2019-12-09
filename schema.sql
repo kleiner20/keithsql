@@ -70,34 +70,34 @@ CREATE TABLE departments
     ("Christian", "Eckenrode", "Lead Engineer", "Mike Chan");
 
 -- Insert in the roles
-  INSERT INTO role
-    (title, salary)
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Sales Lead", 100000 );
-  INSERT INTO role
-    (title, salary)
+    (1, "Sales Lead", 100000 );
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Salesperson", 80000 );
-  INSERT INTO role
-    (title, salary)
+    (2, "Salesperson", 80000 );
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Lead Engineer", 150000 );
-  INSERT INTO role
-    (title, salary)
+    (3, "Lead Engineer", 150000 );
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Software Engineer", 120000 );
-  INSERT INTO role
-    (title, salary)
+    (4, "Software Engineer", 120000 );
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Accountant", 125000 );
-  INSERT INTO role
-    (title, salary)
+    (5, "Accountant", 125000 );
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Legal Team Lead", 250000 );
-  INSERT INTO role
-    (title, salary)
+    (6, "Legal Team Lead", 250000 );
+  INSERT INTO roles
+    (id, title, salary)
   VALUES
-    ("Lawyer", 190000 );
+    (7, "Lawyer", 190000 );
 
 -- Insert a set of departments.
   INSERT INTO departments
